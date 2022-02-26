@@ -89,6 +89,16 @@
 
         pip3 install pydub
         
+#### Install pygame for sound playback
+
+- Install latest version of pygame using pip:
+
+        pip3 install pygame
+        
+- Additional library is needed
+
+        sudo apt install libsdl2-mixer-2.0-0
+        
 ### Install Soundcard and Make Default
 
 - Set external soundcard as default [how-to](https://www.raspberrypi-spy.co.uk/2019/06/using-a-usb-audio-device-with-the-raspberry-pi/)
@@ -150,7 +160,7 @@
   
         raspistill -t 1 -o test.jpg
         
-  Download test.jpg using sftp.
+  Download test.jpg using sftp. On macos use filezilla for sftp.
   
 ## Set Up OnOff Shim:
 

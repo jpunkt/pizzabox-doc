@@ -1,0 +1,360 @@
+====== ASSEMBLY INSTRUCTIONS ======
+
+//Performance Machine in a Pizzabox// **Model RI**, January 2022
+
+===== READ THIS FIRST! =====
+
+**DISCLAIMER:** These instructions are provided on an as-is basis without any guaranty for completeness or success. Although we have taken care to document every step in the build process, but acknowledge that some steps may be challenging, and some information may be missing. If you attempt to replicate the box, you do so on your own risk. This is a very challenging project which requires the use of automated manufacturing equipment and the assembly of electronics components. Practical experience with 3D printing, laser cutting and electronics assembly is required.
+
+**LICENSING:** We provide all plans to build the Performance Machine in a Pizzabox for free as open source, licensed unter [[http://creativecommons.org/licenses/by-sa/4.0/|Creative Commons Attribution-ShareAlike 4.0 International License]].
+
+**SUPPORT:** We offer assistance and technical support for theaters and artists or communities who wish to reproduce the Performance Machine in a Pizzabox, both for commercial and non-commercial use. As our time and resources are limited, we are only able to offer hands-on support as a paid service. If you are planning to use the Performance Machine in your theater production or art work, please contact us for an offer.
+
+===== 3D PRINTING =====
+
+  * Print all parts. We used PLA on an FDM machine (Ultimaker S3) with brim and prime blob enabled.
+    * 4x sensor mounts
+    * 4x tube mounts
+    * 4x scroll halves short
+    * 4x scroll halves long
+    * 2x camera arm hinge
+    * 2x mounts for power converters
+    * 1x drill gage
+  * Debur all printed parts using a deburring tool or cutter knife
+  * Finish the parts. Most small parts require nuts to be inserted for screw connections.
+    * Insert M3 square nuts into all square holes
+    * Insert M2 hexagonal nuts into the small hexagonal holes on the transformer-holders
+    * Use the soldering machine to get them into place tightly if necessary
+    * Enclose two M3 square nuts in the centre of the two halves of the hinge and screw it together with two M3 countersunk 12mm screws
+    * Cut the 4 mm brass tube into 4x 202 mm and 4x 106 mm using a cutting knife and rolling the tubes underneath
+    * Insert a short (approx. 20 mm) offcut of the 4 mm brass tube into the top of the hole gage. **This needs to be done before the 8mm MDF parts cal be drilled**
+    * Combine two halves of the scrolls and connect them with an acrylic cog on the one side and with a circle with hexagonal hole in the centre on the other side (this needs to be done after the 4mm milky acrylic has been lasercut)
+
+===== LASER CUTTING =====
+
+We require parts to be cut from different materials. Our parts are designed to fit into each other snugly without using excessive force, which requires setting a beam thickness compensation. Based on our experience with a 100 W laser cutter we recommend setting this 0.1 mm on all parts //unless otherwise mentioned// (+0.1 mm on outer cuts and -0.1 mm for holes). If this is not possible on your machine, you may need to adapt the ''%%.svg%%'' files using e.g. the “Inset / Outset” feature in Inkscape.
+
+Every laser cutter is different, so make yourself familiar with your model and cut a test piece to determine the necessary beam thickness compensation and speed settings before cutting all parts.
+
+=== 3mm darkened acrylic ===
+
+  * 1x button cover
+  * 1x main cover **Caution:** use engraving settings for the big square in the centre and the headphone and power plug symbols
+  * 1x camera arm
+
+=== 4mm milky acrylic ===
+
+  * 1x light cover bottom
+  * 4x scroll gears
+  * 4x hexagon rings
+  * 4x motor gears
+
+=== 6mm sidelight acrylic (transparent) ===
+
+  * 1x light cover top
+
+=== 3mm HDF ===
+
+  * 2x speaker cover
+  * 2x speaker front
+  * 2x speaker back
+  * 4x speaker side
+  * 1x wall top
+  * 1x wall bottom
+  * 1x wall left
+  * 1x wall right
+  * 4x motor mount bracket
+  * 4x motor mount base
+  * 1x screen frame
+  * 1x baseplate **reduced cutting allowance:** 0 mm for all holes and +0.1 mm for the outer cut
+
+=== 8mm MDF ===
+
+  * 2x scroll support vertical
+  * 1x scroll support horizontal left
+  * 1x scroll support horizontal right
+  * 1x speaker support
+  * 1x battery holder long
+  * 1x battery holder short
+  * 2x button support top
+  * 2x button support botttom
+  * 2x hinge support
+  * 2x hinge camera holder
+  * 2x light support vertical
+  * 2x light support horizontal
+  * 2x speaker support
+
+===== LASER CUT PART ASSEMBLY =====
+
+Complete the MDF parts by drilling holes for screw connections and inserting the nuts. We recommend using the 3D printed //drill gage// and a light hand held drill for best results. **Make sure you have printed and assembled the drill gage before assembling the laser cut parts.**
+
+  * Drill 3 mm holes into the side of all 8 mm MDF parts wherever there is a rectangular hole using the drill gage
+  * Insert M3 square nuts into the center of each rectangular hole on all 8mm MDF parts
+  * Countersink all round holes on the back of the baseplate as well as the outside of all four wall parts
+  * Countersink the round holes for the motor-mounts, the sensor-holders and tube-holders on the inside side of all 4 scroll-supports
+  * Countersink all round holes on the top side of the camera arm
+  * Insert the 8 bearings carefully from the inside into the big round holes on each side of each scroll support. Connect the long scroll supports with the short scrolls. Connect the short scroll supports with the long scrolls with the cog-side of the scroll facing the side of the scroll support which has another big round hole next to it for the motors.
+  * Use wood glue to assemble the four speaker walls with each other and glue the cover onto it. From the inside cover all creaks left with wood glue.
+  * Join the each of the four motor mount baseplates with their bracket using wood glue. Make sure no wood glue spills into the round hole of the baseplate where the motors come in, otherwise they will not fit.
+  * **Optional:** Paint all wooden parts black with spray paint
+
+===== ELECTRONICS ASSEMBLY =====
+
+==== Printed Circuit Board ====
+
+Solder all parts in the following order. Make sure all connectors are flush with the PCB to avoid breaking the solder pads when you plug in the cables.
+
+  * Resistors
+  * JST XH connectors (white plugs)
+  * 5mm green and red LED
+  * 20-pin black connector
+  * Solder pins to microcontroller and motorcontroller (**only the input side**)
+  * Pin headers for microcontroller and motorcontroller. Make sure the headers are in a right angle to the board.
+
+==== Sound system ====
+
+  * Cut cables in the following length, strip them about 2mm and tin each end with the soldering iron:
+    * Black Cables: 1x 400mm, 1x100mm, 2x 30mm
+    * Yellow Cables: 1x 450mm, 1x 200mm, 1x 50mm
+    * Grey Cables: 1x 500mm, 1x 200mm, 1x 50mm
+    * Red Cables: 1x 400mm 1x 100mm, 2x 70mm, 1x 50mm
+  * Solder cables to speakers:
+    * Solder a red 70mm cable to the plus pole of each of the two speakers.
+    * Solder a black 30mm cable to the ground pole of each of the two speakers.
+  * Insert the speaker into the speaker box and screw it into the speaker holder using two 16mm M3 counter sink screws.
+  * Cut the cable of the microphone about 20cm from the case, strip and tin the wires and a part of the shielding.
+  * Open the plastic case of the USB sound card. This usually works very easily using a cutter or flat tipped screw driver.
+  * Solder the two wires and shielding of the microphone cable to the input jack (usually red or pink) of the sound card. Attach the shield to the outer most cuff, then the red cable, and the white cable on the inner most cuff.
+  * Solder all three gray cables to the outside ring of the output jack (usually green) of the sound card.
+  * Solder a red 50mm cable to the middle cuff of the of the sound card’s output jack
+  * Solder a yellow 50mm cable to the innermost cuff of the of the sound card’s output jack
+  * Connect the pins of the headphone jack with the following cables. Check the data sheet for correct pin numbering.
+    * Pin 1: grey 50mm cable from sound card
+    * Pin 2 red 50 mm cable from sound card
+    * Pin 3: yellow 500 mm cable
+    * Pin 4: yellow 200 mm cable
+    * Pin 5: yellow 50 mm cable from sound card
+  * Solder the wires for both mini amp modules. If in doubt which is left and right, use the mnemonic “red is ring is right”. Solder the longer cables to the right amp and the shorter cables to the left.
+    * ''%%Speaker -%%'': black cable from speaker
+    * ''%%Speaker +%%'': red cable from speaker
+    * ''%%Amp +%%'': yellow (R: 500 mm, L: 200 mm) cable from mini-jack headphone plug
+    * ''%%Amp -%%'': grey (R: 500mm, L: 200 mm) cable from soundboard
+    * ''%%VCC%%'': red (R: 400mm, L: 100 mm) cable
+    * ''%%Ground%%'': black (R: 400mm, L: 100 mm) cable
+
+==== Motors ====
+
+  * Cut the following lengths of the thick (ø 5 mm) shielded cable, strip and tin about 5 mm on both ends:
+    * 25 cm
+    * 40 cm
+    * 50 cm
+    * 60 cm
+  * Solder the red inner cable to the motor inlett labeled ''%%+%%'' and the white cable to the other.
+  * Solder the 100 nF capacitor between the inletts of the motor.
+  * Carefully insert the motors into the motor mounts by twisting them slightly and sliding them back until the back of the motor touches the mount bracket.
+  * Secure the motor with a zip tie through the slits on the bracket and trim the end of the zip tie.
+  * Solder one 47 nF capacitor between each of the inletts (i.e. two capacitors in total) and the motor casing.
+  * Push the small acrylic gear on to the motor shaft. It should fit snugly but be moveable by hand. If the fit is not right, cut new gears with different beam compensation offsets.
+
+==== Sensors ====
+
+  * Prepare the following lengths of thin (ø 3 mm) shielded cable:
+    * 2 x 25cm
+    * 2 x 40 cm
+    * 2 x 50cm
+    * 2 x 60cm
+  * Remove approx. 2 cm of the outer insulation from the cable on both ends. Strip and tin about 5 mm of the inner wires **on one end only**. Twist the shielding to a single strand and tin it on both ends of the cable. **Make sure not to damage the insulation of the inner wires when doing this**.
+  * For all 8 sensors, join the two ground pins (labelled with ''%%D%%'' and ''%%E%%'' on the case) which are diagonally opposite each other.
+  * Solder the cable shielding to the connected ground pins
+  * Solder the two inner wires to the remaining pins (labelled with ''%%+%%'') on the sensors. Make sure to use the same color wires for the same pins on all sensors (e.g. brown for the side labelled with ''%%D%%'' and white for the other one).
+  * Use some insulation tape to cover the ground pins, to prevent shorting of the sensors when they are mounted.
+  * Attach JST XH crimped contacts (without the headers) to both wires and the shielding on the other end of the cable. You do not need to remove the insulation before crimping.
+  * Screw the pairs of sensors with the same cable length into the sensor holders using M3 x 8 mm cylinder head screws. **This needs to be done before the headers are attached to the cables**.
+  * Insert the crimped contacts into 3-pin headers. Viewed from the back side with the locking tabs facing up, the ground connector must be on the left most pin, followed by the detector (marked ''%%D%%'') and then the emitter (marked ''%%E%%''). Consult the ciruit diagram and PCB layout if unsure.
+
+==== Lights ====
+
+  * Cut a rectangle with approximately 200 x 100 mm from perforated sheet metal metal using an angle grinder. Make sure to debur all edges with the grinder or a file.
+  * Cut two pieces of 220 mm length from the 4 x 10 mm rectangular brass rod using the angle grinder or a metal saw and debur the edges. Take care that the cut is in a right angle.
+  * Cut the SK6812 LED strips into pieces as follows:
+    * 10 x approx. 20 cm (12 LEDs per piece)
+    * 2 x approx. 22 cm (13 LEDs per piece)
+  * Before removing the protective cover from the adhesive, tin all solder pads on the ends of the LED strips. This helps to solder the wires on later.
+  * Cut wires of the following colors and lengths. Strip approx. 1-2 mm on each end (less is better). Tin all the ends:
+    * Black: 1 x 125 mm, 4 x 25 mm, 5 x 15 mm
+    * Yellow: 1 x 125 mm, 9 x 20 mm
+    * Red: 1 x 125 mm, 5 x 25 mm, 4 x 15 mm
+  * Cut 2 x 250 mm of Red, Yellow and Black wire. Strip and tin approx. 1-2 mm **on one end only**.
+  * Mount the 10 shorter LED strips on the perforated sheet metal with their adhesive tape. Make sure that the strips lie tightly next to each other and **make sure that the arrow on the LED strips is pointing in the opposite direction in every row** (i.e. one left, one right, repeat). This will be the //back light//.
+  * Connect the pads of the //back light// strips in direction of the arrows using the 15 mm wires. We recommend black for ''%%GND%%'', red for ''%%+%%'' and yellow for ''%%D%%'' (Data). **Make sure to connect all strips so that all arrows point in the same direction**.
+  * Solder the 250 mm wires to the beginning of the //back light// (i.e. so the arrows point away from the wires), using the same color coding.
+  * Attach the JST XH crimped contacts to the other end of the wires, but **do not attach the header yet**.
+  * Connect the two longer strips of LEDs with the 125 mm wires, making sure that the arrows point in the same direction. This will be the //front light//.
+  * Mount the longer LED strips on each of the brass rods. Make sure that they are centered.
+  * Solder the remaining 250 mm wires to the start of the //front light// LED strips and attach the crimped contacts to the other end.
+  * Pro Tip: Only attach the JST XH headers to the connecting wires at the end, as you may need to thread them through some tight holes.
+
+==== Buttons ====
+
+  * Cut wires in the following colors and lengths and strip them about 2 mm on one end and tin them:
+    * Black: 1 x 280 mm, 1 x 230 mm, 2 x 130 mm
+    * Yellow: 1 x 300 mm, 1 x 250mm, 2 x 150mm
+    * Red: 1 x 300mm, 1 x 250mm, 2 x 150mm
+  * Cut an additional 8 x 20 mm black wires to be stripped and tinned 2 mm on both ends.
+  * Solder two of the 20 mm black pieces to one end of each longer black pieces, forming a “Y”. Cover the connection with heat-shrink tubing. These wires will connect one end of the push-buttons and the cathode of the matching indicator LED to ground.
+  * Thread heat-shrink tubing over both shorter ends of black wire. Solder the wires to one connector on the push button and the other to the cathode of the LED. Cover the connection with heat-shrink tubing. We recommend using the following lengths for the following button / LED colors:
+    * Green and Yellow: 130 mm
+    * Red: 250 mm
+    * Blue: 300 mm
+  * Remove the fixing nut and rings from the buttons and keep them safe.
+  * We recommend using the same color wires for all LED anodes, and another color for the Button connectors. Solder the appropriate lengths of wire to each of the Button and LEDs.
+  * Insulate all connections with heat-shrink tubing.
+  * Add JST XH crimped connectors to the ends of each wire.
+  * We recommend mounting the buttons in the following order, from left to right: blue, red, green, yellow. Thread the wires and LEDs connected to each button through the holes in the button mount plate. Then thread the split ring and the fixing nut of each button over the wire and LED from the other side and mount the button in the hole. Finally, push the LEDs through the small holes and optionally fix them with a drop of superglue.
+
+==== Raspberry Pi On/Off-SHIM, -Button & Lid-Switch ====
+
+=== On/Off-SHIM ===
+
+We use a [[https://shop.pimoroni.com/products/onoff-shim|Pimoroni On/Off-SHIM]] for power management on the Raspberry Pi. As the GPIO headers of the Pi are connected to the PCB with a plug connector, the shim must be soldered to the headers as close to the Pi’s motherboard as possible. **This is likely to be the most advanced soldering operation in this project. It also has potential to ruin the Raspberry Pi. If in doubt, ask someone with more soldering experience to help with this step**.
+
+  * Cut one red and black wire to approx. 150 mm length and strip and tin 1-2 mm on both ends.
+  * Solder the wires to the button on one end and connect them to the two pads on the SHIM marked ''%%BTN%%''. **Take care to only solder them on to the top of the SHIM in SMD-style, otherwise the SHIM may not lie flush on the Pi**.
+  * Use a piece of double sided tape to stick the SHIM to the Raspberry Pi before you solder the header. There is a shielded box on the motherboard near the header which forms a good base. Optionally first insulate it with tape.
+  * Solder the SHIM to the GPIO headers. Take great care to only apply solder to the pins directly at the solder pads of the SHIM. We recommend using a very fine solder wire and tip.
+
+=== Lid-Switch ===
+
+The microswitch detects if the lid is open or closed. It doubles as a stand-by switch for the audio amps.
+
+  * Cut wires to the following lengths, strip and tin 2-3 mm on both ends:
+    * Black and red: 700 mm (one of each colour)
+    * Yellow: 2 x 500 mm
+  * Solder the black wire to the pin marked ''%%0%%'' on the microswitch.
+  * Solder the red wire to the pin marked ''%%NC%%'' (normally closed).
+  * Solder the yellow wires to the pin marked ''%%NO%%'' (normally open).
+  * Cover and isolate all connections with heat-shrink tube.
+  * The other ends of the wiring need to be connected after the box was assembled.
+
+==== Power ====
+
+The following steps may differ if you decided not to use an on board battery. In that case, connect the wires from the input power connector directly to the WAGO terminal. If you are using a fixed power supply from an AC/DC adaptor, make sure it has the right polarity and is able to deliver at least 4 A current at 12 V. //Be aware that this is a high current, which is sufficient to cause severe harm. The Performance Machine contains motors which may draw significant power when they are running. Make sure that all wiring regarding the power supply has the appropriate dimensions and is secured against coming lose and/or shorting. If in doubt, consult an experienced electronics expert before completing the following steps.//
+
+**CAUTION: If you are using a battery, be aware that external power may only be provided by an APPROPRIATE CHARGER. Battery chargers provide a constant //current// to the battery, and ensure that the battery does not overcharge. DO NOT UNDER ANY CIRCUMSTANCES CONNECT A REGULAR AC/DC POWER ADAPTOR TO THE BATTERY. DOING SO WILL DAMAGE THE BATTERY AND MAY CAUSE THE BATTERY TO CATCH FIRE OR EXPLODE.**
+
+  * Cut black and red wires to size, strip and tin 5 mm on both ends. Twist the black/red wires into pairs of the following lengths:
+    * 3 x 300mm
+    * 2 x 200mm
+    * 1 x 150mm
+    * 2 x 50mm
+    * 1 x 20mm
+  * If you are using a prefabricated micro-USB-to-USB-A cable, cut it so that approx. 200 mm of wire remain on the end with the micro-USB connector. Strip the ends of the power wires (usually red and black, but double check if you are unsure) and tin approx. 2-3 mm.
+
+**For the following steps, always use red for voltage (i.e. plus) and black for ground. This should be obvious but we mention it here for safety reasons. If this was not clear to you already, get an experienced electronics expert to help you NOW.**
+
+  * Solder the 300 mm wires to the appropriate pins on the female cylindrical power connector (negative on the outside).
+  * If you are using the battery, connect the other side of the wires from the power connector to a male cylindrical connector. **Make that the polarity and input connector dimensions match the battery and the charger**.
+  * The Performance Machine uses three 5 V step-down converters to power the following components individually:
+    * Raspberry Pi SBC + microcontroller and PCB
+    * Audio amplifiers
+    * LED lighting
+
+  * Two converters are mounted on the left hand side of the box, and one on the right. Use the left hand converters to power the Pi and the amps. Use the right hand converter to power the LEDs.
+  * Solder the 50 mm black / red wire pairs to the input pads on two step down converters. Solder the 300 mm black / red wire pair to the remaining converter.
+  * Solder the micro-USB cable to the outputs of one of the converters with the short input wires.
+  * Solder the power input wires of the amps to the other step-down converter with the short input wires.
+  * Solder the 150 mm wire pair to the output of the step-down converter with the long input wires.
+  * Connect the power input for the motor controllers to the 200 mm wire pairs.
+  * Connect the 20 mm wire pair to a female cylindrical connector, **making sure that the polarity is correct**. Connect one WAGO clamp connector to each of the wires.
+  * Connect the the power inputs from the step-down converters and motor controllers with the WAGO clamp connectors (red to red, black to black).
+  * Check the power train now with the continuity testing function of a multimeter. Make sure that all positive and negative terminals are interconnected respectively, and that there is no connection between them.
+
+**Only connect the battery / power source after the whole assembly is complete.**
+
+===== FINISHED ASSEMBLY =====
+
+==== Sensors & Motors ====
+
+  * Assemble the tape guide and sensor modules:
+    * One tube holder and one sensor holder each are connected by two brass tubes of the appropriate length.
+    * Make sure that the lengths of sensor cables match to the lengths of brass, so that
+    * the 500 mm cables lead to the upper module on the vertical tape
+    * the 400 mm cables lead to the lower module on the vertical tape
+    * the 250 mm cables lead to the right hand module of the horizontal tape
+    * the 600 mm cables lead to the left hand module of the horizontal tape
+  * Fix the long modules to the **horizontal scroll supports** using M3 x 16 mm countersink screws.
+  * Mount the motors in their holders with M3 x 16 mm countersink screws and square nuts. The screw head should be on the inside (tape facing side) of the scroll supports. Determine the position of the motor by lengths of power cable:
+    * top right motor: 500 mm cable
+    * bottom right motor: 250 mm cable
+    * bottom left motor: 400 mm cable
+    * top left motor: 600 mm cable
+  * Assemble the scroll supports by slotting the vertical supports into the horizontal supports. Make sure that the vertical supports are each on the correct side. **Take care not to squeeze the sensor cables too much during this operation**.
+  * Now fix the short sensor modules to the vertical scroll supports using M3 x 16 mm countersink screws.
+
+==== Camera Arm & Base Plate Preparation ====
+
+  * Slot the two laser cut camera holder pieces in the top of the camera arm and screw them tight with one M3 x 10 mm countersink screw each
+  * Use the Raspberry Pi camera module to mark out the position of the mounting holes. The small slits are for M2 square nuts. Drill four 2mm holes into the Camera Holders corresponding into the small slits for the nuts. **Take care to drill the holes as perpendicular to the edges as possible. Make sure to be as centered over the nut slits as possible**.
+  * Place the 3D printed hinge assembly in between the two laser cut hinge supports so that the round part matches up and the hole halves are aligned.
+  * Slot the two hinge supports in to the slits on the top left corner of the baseplate and screw them tight with one M3 x 10 mm countersink screw each.
+  * Attach the lid switch on the outside of the right hinge support using M2 x 16 mm screws and square nuts
+  * Slot the Camera Arm into the hinge assembly and screw it tight with two M3 x 10 mm countersink screws
+  * Plug the flat cable into the Raspberry Pi camera and thread it through the two slits of the camera arm
+  * Screw the camera to the holder using M2 screws and M2 nuts. You might need to hold the M2 nuts in place with tweezers while you are screwing.
+  * Screw eight M2.5 x 6 mm spacers into the holes in the baseplate with eight M2.5 x 5 mm countersink screws
+  * Screw the two power converter supports into the baseplate on either side of the battery bay using two M3 x 8 mm countersink screws.
+
+==== Supports & Walls ====
+
+  * Take the scroll support you assembled previously. Mount the walls to the sides using M3 x 8 mm countersink screws. Begin with the top wall and progress clockwise, inserting the walls and fixing them with screws.
+  * When you reach the left hand side wall, first thread the cables from the lid switch through the wall section before fixing it to the scroll mount.
+  * Attach the two bottom button cover supports to the two outer holes of the bottom wall fitting the square nose on the side into the square holes and screwing them tight with one M3 x 10 mm countersink screw each
+  * Insert the short battery holder piece into the rectangular hole on the lower wall and screw it tight with an M3 x 10 mm countersink screw.
+  * If needed, apply a little wood glue to the wall section interfaces.
+  * Place the short battery holder piece on top of the long battery holder connecting at the center and pressing them tight without breaking them
+  * Check if the wall corners fit together snugly. If not, consider applying a bit of wood glue before the next step.
+  * Place the battery at the bottom centre of the baseplate underneath the battery holder with the plugs facing to the left and then slot the entire construction with walls, scroll supports, bottom button cover holders and battery holders into the baseplate with the motor and cover switch cables running on in the cable channel underneath the scroll supports on each side and the sensor cables on the top.
+  * If you applied glue, gently clamp the walls together using a lashing strap or similar.
+  * Press it tightly in, making sure not to squeeze any cables and screw them tight with 21 M3 x 10 mm countersink screws through the back of the baseplate.
+  * Remove the ring of the power plug, insert it in the round hole in the middle of the right wall and screw it tight.
+  * Place the sound card support onto the baseplate to the right of the rectangular opening in the left wall. Run the two motor cables through the inner half-round holes at the bottom of the support and the power and lid switch cables underneath the outer hole.
+  * Press the sound card support tightly into the square hole in the baseplate, making sure not to squeeze any cables. Screw them tight with two M3 x 8 mm countersink screws.
+  * Screw the two step-down converters with the 50 mm input cables to the transformer support on the left side of the battery and the third converter with the longer cables to the right hand support.
+
+==== Wiring and Final Assembly ====
+
+  * Insert a micro-SD card flashed with the operating system into the Raspberry Pi. This is easier as long as the Pi is not screwed down.
+  * Plug the sound card into the bottom right USB port of the Raspberry Pi and screw the Pi to the four spacers on the left using M2.5 x 5 mm cylinder head screws
+  * Cut a 200mm piece of the flat band cable and attach the corresponding plugs on either side. **Make sure that the polarity protection nose is on the correct side of the cable on both sides**.
+  * Screw the On / Off-button to the left wall using the two 2mm holes next to the large rectangular opening using two M2 screws and nuts.
+  * Plug the micro-USB cable into the port on the On/Off-SHIM on the Raspberry Pi.
+  * Remove the ring of the mini-jack headphone plug and glue the plug into the lower round hole in the left wall using super glue. Make sure it is pushed / screwed all the way into the wall.
+  * Solder the yellow cables of the lid switch to the ''%%standby%%'' pin on each of the amps
+  * Attach the amps to the speaker boxes using M2 x 10 mm screws and nuts.
+  * **Only for PCB v1.0:** Solder the black wire of the lid switch to the pad of pin 9 of the black connector on the bottom of the PCB. Solder the red wire to pin 15 of the black connector.
+  * **PCB v1.1:** Use JST XH crimped connectors on the black and red wire of the lid switch. Use a 2 pin JST XH connector with the black wire connected to the left pin.
+  * Screw the PCB board onto the four spacers on the right using M2.5 x 5 mm cylinder head screws.
+  * Connect the Raspberry Pi and the PCB using the flat band cable.
+  * Insert the speaker boxes into the appropriate slots on the bottom corners on the baseplate. Make sure the 1 mm high slits on the sides of the speaker boxes face to the inside of the box, so the cables can be threaded through it.
+  * Once in place press the speaker boxes tightly into the baseplate. **Make sure not to squeeze any cables** and screw them tight with two M3 x 10 mm countersink screws each.
+  * Fix the microphone over the centre of the crossing of the two battery holder pieces using double sided tape or superglue.
+  * Insert the two top button cover holders into the baseplate above the speakers and screw them tight with one M3 x 10 mm countersink screws each.
+  * Glue the //back light// LED panel into the center of the space between the scroll supports using double sided tape. Make sure that it is centered exactly between the supports. Thread the connecting wires through the slot in the lower horizontal scroll support.
+  * Attach the JST XH plug header to the LED wires so that when viewed from the back the black wire is on the left, the yellow in the middle and the red on the right.
+  * Insert the two long light supports in the space between the scroll supports. Make sure they fit snugly on the top and bottom of the rectangular space.
+  * Insert the two short light supports on the left and right sides of the same space.
+  * Attach the cable inside using tape, so it can not move over the lights
+  * Cut a piece of ND foil to the same size as the 4mm milky acrylic bottom light cover and stick it to the two long sides of the light cover using scotch tape. The short sides should remain open, so the horizontal tape can be threaded through.
+  * Place the light cover into the space of the light supports, so that the ND foil is facing upwards and press it in tightly.
+  * Using a cutter knife, cut a channel for the //front light// LED wires in the right vertical scroll support where it meets the lower horizontal support.
+  * Insert the //front light// LEDs on the brass rods on to the light supports, tightly along the long light supports running from the bottom right to the top right, so that the connecting cable is on the left side. Run the cable to the PCB board through the channel you just cut with the knife, above the sensors and parallel to the sensor cables.
+  * Place the clear top light cover on the light support between the LED rods and press it down carefully but firmly so it covers the LEDs entirely.
+  * Place the screen frame on top of the scroll supports above the LED rods so that the LEDs are well covered, and the rectangular hole is centered over the lighting.
+  * Run the thin flat cable from the camera through the large rectangular hole in the left wall and plug it into the Raspberry Pi camera port.
+  * Connect the motor wires to the motor controllers, so the red wires are on the outer most ports, and the shield is connected to the inner ports.
+  * Plug the sensor cables, lighting and buttons into the PCB board, following the schematic (TBA).
+  * Insert the horizontal and vertical tapes (see //tape insertion and debugging//, TBA)
+  * Attach the power connector to the battery (or to the WAGO clamp connectors if you are not using a battery). Connect the battery power output to the WAGO clamp connectors.
+  * Place the button cover onto the supports so that the microphone protrudes through the big round hole at the center
+  * Place the acrylic cover over the scroll supports and button cover. Make sure all cables run in their cable channels are not squeezed anywhere, and that the side notches fit into the protrusions on the walls.
+  * Screw the acrylic covers (main cover and buttons) tight into the button cover supports with two M3 x 16 mm countersink screws
