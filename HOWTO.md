@@ -103,6 +103,10 @@
 
         pip3 install pydub
         
+- Install `scipy` for Raspberry Pi:
+
+        sudo apt install python3-scipy
+        
 #### Install pygame for sound playback
 
 - Install latest version of pygame using pip:
@@ -112,6 +116,7 @@
 - Additional library is needed
 
         sudo apt install libsdl2-mixer-2.0-0
+        sudo apt install pulseaudio
         
 ### Install Soundcard and Make Default
 
@@ -227,17 +232,50 @@
 
         curl https://get.pimoroni.com/onoffshim | bash
         
+## Set Up usb stick automount
+
+**After this step, the Pi will only boot with an inserted USB drive with the name PIZZAFILES. Proceed with caution**
+
+- USB drive needs to be named `PIZZAFILES` and formated with vfat
+
+- Create mountpoint:
+
+        cd ~
+        mkdir pizzafiles
+
+- Add line to `/etc/fstab`:
+
+        LABEL=PIZZAFILES /home/pi/pizzafiles vfat rw,relatime,exec,uid=pi,gid=pi 0 2
+        
+- Insert usb drive and check with
+
+        sudo mount -a
+        
+  The drive should be mounted to `/home/pi/pizzafiles`. 
+
+        
 ## Python Development on Raspi (pizzabox-main)
 
-- clone github repository `https://git.theater.digital/johannes.payr/pizzabox-main.git`
+- Clone github repository `https://git.theater.digital/johannes.payr/pizzabox-main.git` to your computer
 
-- *(For now)* Use Pycharm. Set up remote python interpreter on raspberry pi:
+- To deploy development version, copy files to Pi from outside the project directory:
 
-        SSH Server: 10.10.0.23
-        User Name:  pi
-        Path:       /usr/bin/python3
+        scp -rpv pizzabox-main pi@10.10.0.23:/home/pi/pizzabox-main
         
-- install missing packages: `'click', 'sounddevice', 'soundfile', 'scipy'`
+- On the Pi, install in editing mode using pip:
+
+        cd ~/pizzabox-main
+        pip3 install -e .
+        
+- To test if everything works run `python3`, type:
+
+        from pizzactrl.statemachine_test import *
+        sm.run()
+        exit()
+        
+- For work-in-progress updates, run (run in project root directory `pizzabox-main`)
+
+        scp pizzactrl/*.py  pi@10.10.0.23:/home/pi/pizzabox-main/pizzactrl/
         
 
 
