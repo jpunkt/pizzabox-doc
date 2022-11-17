@@ -277,5 +277,26 @@
 
         scp pizzactrl/*.py  pi@10.10.0.23:/home/pi/pizzabox-main/pizzactrl/
         
+## Running as a Service
+
+- See the [Documentation](https://docs.fedoraproject.org/en-US/quick-docs/understanding-and-administering-systemd/index.html) on systemd services
+
+- On the Pi, copy the unit file to the right location:
+
+        sudo cp pizza.service /etc/systemd/system/
+
+- Reload the daemon and test that the service works:
+
+        sudo systemctl daemon-reload
+        sudo systemctl start pizza
+        
+- To enable the service on startup:
+
+        sudo systemctl enable pizza
+
+- While testing, disable the service:
+
+        sudo systemctl disable pizza
+
 
 
