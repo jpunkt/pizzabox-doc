@@ -37,10 +37,19 @@
         
         interface eth0
         fallback static_eth0
+        
+- **Since April 2022, there is no default user/password!** To set up headless Pis, it is now necessary to set up a `userconf.txt` file on the `boot` partition of the sd card.
+  See the [manual](https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-a-user)
+  
+  To set up a user named `pi` with password `pizzabox`, use this line in the config file:
+  
+        pi:$6$oitbxzwpQ7h3hEOt$VRT9QCd.vvdJqyyjWsb3E7XnbGEeshqnovi8JFHvBf4oMj8mMCSuHXfQ8.x4BeTT3L.5w7eBFmRocuuxezcRD0
+
+
 
 ### First Boot
 
-- Hook up pi to configuration system via ethernet, screen is optional. Insert SD-card, plug in OnOff SHIM
+- Hook up pi to configuration system via ethernet. Insert SD-card, plug in OnOff SHIM
 
 - Connect via ssh:
 
@@ -50,11 +59,14 @@
 
   * *(optional)* set up WiFi and connect (for updates, ...)
 
-  * enable camera
+  * **With Raspberry Pi OS > 2022** enable legacy camera
   
-  * enable serial
+  * enable serial:
+  
+        Disable Login shell on serial
+        Enable serial hardware
 
-  * change password to `pizzabox`
+  * **Not necessary with Raspberry Pi OS > 2022** change password to `pizzabox`
   
   Apply changes and reboot.
   
@@ -69,6 +81,8 @@
 
         sudo apt install git python3-picamera python3-gpiozero python3-pip python3-setuptools python3-serial
         
+  **Caution:** *The "old" `picamera` library is now considered "legacy" and will be replaced in future versions with `picamera2`.* However this requires changes to the software.
+        
 - Update NumPy:
 
         pip3 install numpy --upgrade
@@ -81,9 +95,9 @@
 
         sudo apt install libportaudio2
         
-- Install `gpac` for the video convertion tool *MP4Box*:
+- Install `ffmpeg` for video conversion
 
-        sudo apt install gpac
+        sudo apt install ffmpeg
         
 - Install `pydub` python library for mp3 support:
 
@@ -112,30 +126,29 @@
   Produces output similar to
   
         **** List of PLAYBACK Hardware Devices ****
-        card 0: b1 [bcm2835 HDMI 1], device 0: bcm2835 HDMI 1 [bcm2835 HDMI 1]
-          Subdevices: 4/4
+        card 0: Headphones [bcm2835 Headphones], device 0: bcm2835 Headphones [bcm2835 Headphones]
+          Subdevices: 8/8
           Subdevice #0: subdevice #0
           Subdevice #1: subdevice #1
           Subdevice #2: subdevice #2
           Subdevice #3: subdevice #3
-        card 1: Headphones [bcm2835 Headphones], device 0: bcm2835 Headphones [bcm2835 Headphones]
-          Subdevices: 4/4
-          Subdevice #0: subdevice #0
-          Subdevice #1: subdevice #1
-          Subdevice #2: subdevice #2
-          Subdevice #3: subdevice #3
-        card 2: Device [USB PnP Sound Device], device 0: USB Audio [USB Audio]
+          Subdevice #4: subdevice #4
+          Subdevice #5: subdevice #5
+          Subdevice #6: subdevice #6
+          Subdevice #7: subdevice #7
+        card 1: Device [USB PnP Sound Device], device 0: USB Audio [USB Audio]
           Subdevices: 1/1
           Subdevice #0: subdevice #0
+
           
-  `card 2` is the usb sound card.
+  `card 1` is the usb sound card.
 
 - Edit the file `/usr/share/alsa/alsa.conf`:
 
-  Change the following lines (change the `0` to `2`)
+  Change the following lines (change the `0` to `1`)
   
-        defaults.ctl.card 2
-        defaults.pcm.card 2
+        defaults.ctl.card 1
+        defaults.pcm.card 1
         
 - Test the speakers:
 
@@ -148,6 +161,52 @@
         arecord -d 10 -f cd -t wav test.wav
         aplay test.wav
 
+- Setting microphone volume lower with softcontrol:
+  
+  see: https://superuser.com/questions/1542023/alsa-setting-microphone-levels
+  
+  * created file `~/.asoundrc`:
+  
+        pcm.!default
+        {
+            type asym
+            playback.pcm
+            {
+                type plug
+                slave.pcm "dmix"
+                slave.rate 48000
+            }
+            capture.pcm
+            {
+                type plug
+                slave.pcm "mic_control"
+            }
+        }
+
+        pcm.mic_control {
+            type            softvol
+            slave {
+                pcm         "hw:1,0"
+            }
+            control {
+                name        "Softmute Capture Volume"
+                card        1
+            }
+            max_dB 10.0
+            min_dB -100.0
+        }
+        
+  * softvol needs to be enabled by using the microphone (sic), see [alsa manual](https://alsa.opensrc.org/Softvol). 
+    Use `arecord` to enable the control in `alsamixer`:
+    
+        arecord -d 10 -f cd -t wav test.wav
+        
+  * with `alsamixer` set:
+  
+        PCM gain:   60, [dB gain: -8.13, -8.13] 
+        Mic gain:    0, [dB gain: 0.00]
+        Softmute:   25, [dB gain: -25.61, -25.61]
+
 - To set gain levels etc. run:
 
         alsamixer
@@ -156,7 +215,7 @@
 
 - Plug in camera with ribbon cable (requires reboot)
 
-- Test camera (with screen plugged in):
+- **This step needs legacy camera installed** Test camera (with screen plugged in):
   
         raspistill -t 1 -o test.jpg
         
