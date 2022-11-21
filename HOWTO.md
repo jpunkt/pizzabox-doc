@@ -2,11 +2,11 @@
 
 ## Materials:
 
-- Raspberry Pi 3B+ with [Pimoroni On/Off SHIM](https://shop.pimoroni.com/products/onoff-shim)
+- Raspberry Pi 3B+ or 2B with [Pimoroni On/Off SHIM](https://shop.pimoroni.com/products/onoff-shim)
 
-- Raspberry Pi OS Lite 2021-05-07
+- Raspberry Pi OS Lite 2022-09-22 bullseye-armhf-lite
 
-- *(later)* Raspberry Pi Pico, connected via UART and power
+- Teensy 4.1 with Arduino framework
 
 - USB Soundcard
 
@@ -30,13 +30,20 @@
         cd <media/user>/rootfs/etc
         sudo nano dhcpcd.conf
         
-  Uncomment the following lines:
+  **Raspberry 3B+ only** Uncomment/edit the following lines:
   
         profile static_eth0
         static ip_address=10.10.0.23/24
         
         interface eth0
         fallback static_eth0
+  
+  **Raspberry 2B only** Uncomment/edit the following lines:
+  
+        interface eth0
+        static ip_address=10.42.0.23/24
+        static routers=10.42.0.1
+
         
 - **Since April 2022, there is no default user/password!** To set up headless Pis, it is now necessary to set up a `userconf.txt` file on the `boot` partition of the sd card.
   See the [manual](https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-a-user)
@@ -44,6 +51,13 @@
   To set up a user named `pi` with password `pizzabox`, use this line in the config file:
   
         pi:$6$oitbxzwpQ7h3hEOt$VRT9QCd.vvdJqyyjWsb3E7XnbGEeshqnovi8JFHvBf4oMj8mMCSuHXfQ8.x4BeTT3L.5w7eBFmRocuuxezcRD0
+        
+- **For Raspberry Pi 2B** Share internet over ethernet. See [here](https://www.tecmint.com/share-internet-in-linux/):
+
+  * Use wired networking profile with option "IPV4->shared to other computers"
+  
+  * Default IP is 10.42.0.1
+  
 
 
 
@@ -57,7 +71,7 @@
 
 - Use raspi-config tool to
 
-  * *(optional)* set up WiFi and connect (for updates, ...)
+  * **Raspberry 3/3B+ only** set up WiFi and connect (for updates, ...)
 
   * **With Raspberry Pi OS > 2022** enable legacy camera
   
