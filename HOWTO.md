@@ -252,6 +252,11 @@
 
 - USB drive needs to be named `PIZZAFILES` and formated with vfat
 
+- Create a hidden file on the stick (needed for Python to recognize if stick is mounted):
+
+        cd /media/<path/to/stick>
+        touch .stick
+
 - Create mountpoint:
 
         cd ~
